@@ -44,6 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
       final pythonScript = '''
 import cv2
 import numpy as np
+import json
 
 def find_contours(image_path):
     image = cv2.imread(image_path)
@@ -62,7 +63,9 @@ def find_contours(image_path):
             cv2.rectangle(image, (x, y), (x+w, y+h), (0, 255, 0), 2)
             row = int(y / h)
             row_counts[row] = row_counts.get(row, 0) + 1
-    return row_counts
+
+    row_count_json = json.dumps(row_counts)
+    return row_count_json
 
 result = find_contours('$imagePath')
 print(result)
