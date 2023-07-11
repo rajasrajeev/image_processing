@@ -39,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
   }
 
-  Future<Map<int, int>> _processImage(String imagePath) async {
+  _processImage(String imagePath) async {
     try {
       final pythonScript = '''
 import cv2
@@ -80,9 +80,10 @@ print(result)
       final stderr = process.stderr as String;
 
       final trimmedOutput = stdout.trim();
+      print("jgJGASJ KJHSAKHS => ${trimmedOutput}");
       if (trimmedOutput.isNotEmpty) {
-        final outputMap = Map<int, int>.from(json.decode(trimmedOutput));
-        return outputMap;
+        // final outputMap = json.decode(trimmedOutput);
+        return trimmedOutput;
       } else {
         print('Python script output is empty');
       }
